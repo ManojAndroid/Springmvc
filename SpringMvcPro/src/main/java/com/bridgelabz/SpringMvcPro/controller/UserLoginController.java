@@ -21,14 +21,25 @@ public class UserLoginController {
 	}
 
 	@RequestMapping(value = "LoginUser", method = RequestMethod.POST)
-	public ModelAndView userLogin1(@RequestParam String email, @RequestParam String password) 
-	{
+	public ModelAndView userLogin1(@RequestParam String email, @RequestParam String password) {
 
 		System.out.println(email);
 		System.out.println(password);
-		userRegistrationDao.Login(email, password);
-
+		if (email != null && password != null) {
+			
+			boolean loginResult=userRegistrationDao.Login(email, password);
+			System.out.println(loginResult);
+			if(loginResult==true)
+			{
 			return new ModelAndView("Home");
-		
+			}
+			else
+			{
+				return new ModelAndView("UserLogin");
+
+			}
+		}
+		return new ModelAndView("UserLogin");
+
 	}
 }

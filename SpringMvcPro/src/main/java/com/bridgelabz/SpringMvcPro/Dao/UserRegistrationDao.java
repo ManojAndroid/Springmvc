@@ -10,14 +10,13 @@ import org.springframework.stereotype.Repository;
 
 import com.bridgelabz.SpringMvcPro.Model.UserRegistrationModel;
 
-@Repository
+/*@Repository*/
 @Component
 public class UserRegistrationDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	public void save(UserRegistrationModel userRegistrationModel) 
-	{
+	public void save(UserRegistrationModel userRegistrationModel) {
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
 		session.save(userRegistrationModel);
@@ -25,18 +24,31 @@ public class UserRegistrationDao {
 		session.close();
 
 	}
-	public void Login(String email,String password) 
-	{
-		System.out.println( "this is password"+password);
-		/*Session session = sessionFactory.openSession();
-			List list = session.createQuery("from DemoDto e where e.PASSWORD="+ password).list();
-			for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-				UserRegistrationModel demodto = (UserRegistrationModel) iterator.next();
-				System.out.print("id     :" + demodto.getName() + " ");
-				System.out.print("brand  :" + demodto.getEmail() + " ");
-				System.out.print("price  :" + demodto.getMobilnumber() + " ");
-			}
-		*/
+
+	public boolean Login(String email, String fpassword) {
+		System.out.println("this is password" + fpassword);
+		Session session = sessionFactory.openSession();
+
+		String sql = " from UserRegistrationModel u where u.Password=:pass and u.email=:email";
+		Query query = session.createQuery(sql);
+		query.setParameter("email", email);
+		query.setParameter("pass", fpassword);
+		List<UserRegistrationModel> list = query.list();
+		/*
+		 * for (Iterator iterator = list.iterator(); iterator.hasNext();) {
+		 * UserRegistrationModel demodto = (UserRegistrationModel)
+		 * iterator.next();
+		 * 
+		 * System.out.print("id     :" + demodto.getMobilnumber()); }
+		 */
+		if (list.size() > 0) {
+			session.close();
+			return true;
+
+		}
+		session.close();
+		return false;
+
 	}
 
 }
