@@ -34,13 +34,6 @@ public class UserRegistrationDao {
 		query.setParameter("email", email);
 		query.setParameter("pass", fpassword);
 		List<UserRegistrationModel> list = query.list();
-		/*
-		 * for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-		 * UserRegistrationModel demodto = (UserRegistrationModel)
-		 * iterator.next();
-		 * 
-		 * System.out.print("id     :" + demodto.getMobilnumber()); }
-		 */
 		if (list.size() > 0) {
 			session.close();
 			return true;

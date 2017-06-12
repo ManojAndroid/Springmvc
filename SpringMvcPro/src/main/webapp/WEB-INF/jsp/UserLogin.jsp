@@ -14,7 +14,10 @@
 	<br> 
 	password:<input type="password" name="password" placeholder="enter the password" required> 
 	<br> <br> 
+	<div style="color: red">${error}</div>
+	<div style="color: red">${errormsg}</div>
 	<input type="submit" value="click to login">
+	
 	</form>
 
 

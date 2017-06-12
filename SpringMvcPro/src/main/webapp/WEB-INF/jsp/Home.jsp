@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Welcome guys</h1>
+	<div style="color:green">${msg}</div>
+
 </body>
 </html>
