@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.bridgelabz.SpringMvcPro.Model.UserRegistrationModel;
 
-/*@Repository*/
+@Repository
 @Component
 public class UserRegistrationDao {
 	@Autowired
@@ -37,11 +37,28 @@ public class UserRegistrationDao {
 		if (list.size() > 0) {
 			session.close();
 			return true;
+		}
+		session.close();
+		return false;
+	}
+	
+	public boolean emailExistValidation(String email) {
+		System.out.println("this is password" + email);
+		Session session = sessionFactory.openSession();
+
+		String sql = " from UserRegistrationModel u where  u.email=:email";
+		Query query = session.createQuery(sql);
+		query.setParameter("email", email);
+		List<UserRegistrationModel> list = query.list();
+		if (list.size() > 0) {
+			session.close();
+			return true;
 
 		}
 		session.close();
 		return false;
 
 	}
+
 
 }

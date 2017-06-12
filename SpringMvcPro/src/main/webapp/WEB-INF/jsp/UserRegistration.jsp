@@ -12,6 +12,7 @@ name: <input type="text" name="name" placeholder="enter the name" required>
 <br>
 <br>
 email:<input type="text" name="email" placeholder="enter the email" required>
+<div style="color: red">${msg}</div>
 <br>
 <br>
 mobile number:<input type="text" name="mobilnumber" placeholder="enter the mobile number" required>
