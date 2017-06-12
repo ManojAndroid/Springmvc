@@ -27,7 +27,7 @@ public class UserRegistrationController {
 		
 		boolean loginResult = userRegistrationDao.emailExistValidation(email);
 		if (loginResult == true) {
-			model.addAttribute("msg", "this Email aready exist");
+			model.addAttribute("msg", "This Email aready exist");
 			return "UserRegistration";
 		}
 		else{

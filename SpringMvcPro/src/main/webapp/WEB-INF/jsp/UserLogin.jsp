@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1 style="color: red">Welcome ${sucess}</h1>
+<h1 style="color: green">Welcome ${sucess}</h1>
 	<form action="LoginUser" method="post">
 	email: <input type="text" name="email" placeholder="enter the email" required>
 	<br>
