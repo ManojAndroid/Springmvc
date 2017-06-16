@@ -95,6 +95,15 @@
 			<version>2.4</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/jstl/jstl -->
+		<dependency>
+		    <groupId>jstl</groupId>
+		    <artifactId>jstl</artifactId>
+		    <version>1.2</version>
+		</dependency>
+		
+
+
 	</dependencies>
 	<build>
 		<finalName>SpringMvcFileUploade</finalName>

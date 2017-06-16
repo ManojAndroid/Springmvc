@@ -17,7 +17,7 @@
 			<br> <input type="submit" value="uploadeFile" style="margin-right: 9%">
 		</form>
 		<br>
-		<a href="Display" style="margin-right: 9%">Click To Display List</a>
+		<a href="DisplayList" style="margin-right: 9%">Click To Display List</a>
 
 	</center>
 
