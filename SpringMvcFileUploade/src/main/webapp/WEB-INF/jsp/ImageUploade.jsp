@@ -9,14 +9,15 @@
 <body>
 	<center>
 
-<form action="uploadeFile" method="post" enctype="multipart/form-data">
-<!-- 
+		<form action="uploadeFile" method="post" enctype="multipart/form-data">
+			<!-- 
  FileNmae:<input type="text" name="fileName"plceholder="Enter File Name">
  <br><br> -->
- Uploade<input type="file" name="Type">
- <br><br> 
- <input type="submit" value="uploadeFile">
+			Uploade<input type="file" name="Containt" required> <br>
+			<br> <input type="submit" value="uploadeFile" style="margin-right: 9%">
 		</form>
+		<br>
+		<a href="Display" style="margin-right: 9%">Click To Display List</a>
 
 	</center>
 

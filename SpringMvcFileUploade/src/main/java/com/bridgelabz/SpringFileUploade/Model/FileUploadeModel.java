@@ -1,6 +1,7 @@
 package com.bridgelabz.SpringFileUploade.Model;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 import javax.persistence.*;
 
@@ -25,7 +26,7 @@ public class FileUploadeModel implements Serializable {
 	private String fileName;
 	@Lob
 	@Column
-	private byte[] Type;
+	private byte[] Containt;
 
 	public int getId() {
 		return id;
@@ -44,11 +45,17 @@ public class FileUploadeModel implements Serializable {
 	}
 
 	public byte[] getImage() {
-		return Type;
+		return Containt;
 	}
 
 	public void setImage(byte[] Type) {
-		this.Type = Type;
+		this.Containt = Type;
+	}
+
+	@Override
+	public String toString() {
+		return "FileUploadeModel [id=" + id + ", fileName=" + fileName + ", Containt=" + Arrays.toString(Containt)
+				+ "]";
 	}
 
 }

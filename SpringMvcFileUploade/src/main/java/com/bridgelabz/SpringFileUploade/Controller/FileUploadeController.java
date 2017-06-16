@@ -1,6 +1,12 @@
 package com.bridgelabz.SpringFileUploade.Controller;
 
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,34 +24,20 @@ public class FileUploadeController {
 	FileUploadeDao fileUploadeDao;
 
 	@RequestMapping(value = "/")
-	public ModelAndView userRegistration() 
-	{
+	public ModelAndView userRegistration() {
 		System.out.println("hello1 ");
 		return new ModelAndView("ImageUploade");
 
 	}
 
-	/*
-	 * @RequestMapping(value = "/uploadeFile", method = RequestMethod.POST)
-	 * public ModelAndView UploadeFil(FileUploadeModel fileUploadeModel) {
-	 * 
-	 * System.out.println(fileUploadeModel);
-	 * fileUploadeDao.save(fileUploadeModel); return new
-	 * ModelAndView("HomePage"); }
-	 */
-
 	@RequestMapping(value = "/uploadeFile", method = RequestMethod.POST)
-	public String handleFileUpload(HttpServletRequest request, @RequestParam ("Type") CommonsMultipartFile[] fileUploadeModel)
-			throws Exception
-	{
-
-		if (fileUploadeModel != null && fileUploadeModel.length > 0) 
+	public ModelAndView handleFileUpload(HttpServletRequest request,
+			@RequestParam("Containt") CommonsMultipartFile[] fileUploadeModel) throws Exception {
+		if (fileUploadeModel != null && fileUploadeModel.length > 0)
 		{
-			for (CommonsMultipartFile aFile : fileUploadeModel) 
+			for (CommonsMultipartFile aFile : fileUploadeModel)
 			{
-
 				System.out.println("Saving file: " + aFile.getOriginalFilename());
-
 				FileUploadeModel uploadFile = new FileUploadeModel();
 				uploadFile.setFileName(aFile.getOriginalFilename());
 				uploadFile.setImage(aFile.getBytes());
@@ -53,7 +45,54 @@ public class FileUploadeController {
 			}
 		}
 
-		return "HomePage";
-	}
+		return new ModelAndView("HomePage");
 
+	}
+	
+	
+	@RequestMapping(value = "/imageDisplay", method = RequestMethod.GET)
+	  public void showImage(@RequestParam("id") Integer itemId, HttpServletResponse response,HttpServletRequest request) 
+	          throws ServletException, IOException{
+
+
+	    FileUploadeModel item = fileUploadeDao.getImage(itemId);  
+	    
+	    response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
+	    response.setHeader("Cache-Control", "no-store");
+	    response.setHeader("Pragma", "no-cache");
+	    response.setDateHeader("Expires", 0);
+	    ServletOutputStream responseOutputStream = response.getOutputStream();
+	    responseOutputStream.write(item.getImage());
+	    responseOutputStream.flush();
+	    responseOutputStream.close();
+		
+	}
+	
+	
+	
+	
+	
+
+	@RequestMapping("/Display")
+	public List<FileUploadeModel> download(Integer documentId, HttpServletResponse response) {
+
+		List<FileUploadeModel> allFiles = null;
+		try {
+			allFiles=fileUploadeDao.display();
+			System.out.println(allFiles);
+			for (FileUploadeModel fileContain : allFiles) {
+				fileContain.setImage(null);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return allFiles;
+	}
+	
+	
+
+
+	
 }
