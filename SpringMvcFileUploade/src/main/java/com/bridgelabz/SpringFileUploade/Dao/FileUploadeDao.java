@@ -66,5 +66,25 @@ public class FileUploadeDao {
 			return null;
 		}
 	}
+	
+	
+	
+	
+
+	public void deleteImage(Integer ID) {
+		Session session = sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();
+		FileUploadeModel demodto = (FileUploadeModel) session.get(FileUploadeModel.class, ID);
+		session.delete(demodto);
+		transaction.commit();
+		session.close();
+		System.out.println("Data is is deleted id"+ID);
+	}
+	
+	
+	
+	
+	
+	
 
 }

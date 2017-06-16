@@ -21,16 +21,20 @@
 			<th>ImageId</th>
 			<th>ImageName</th>
 			<th>View</th>
+			<th>Delete</th>
 		</tr>
 		<tbody>
 
 			<c:forEach var="temp" items="${imageList}">
 				<tr>
 					<%--<c:url var="editCUrl" value="/item/edit?bid=${categoryAttribute.categoryId}&cid=${item.itemId}" />--%>
-					<c:url var="deleteCUrl" value="/imageDisplay?id=${temp.getId()} " />
+					<c:url var="viewCUrl" value="/imageDisplay?id=${temp.getId()} " />
+					<c:url var="deleteCUrl" value="/imageDelete?id=${temp.getId()} " />
+
 					<td><c:out value="${temp.getId()}" /></td>
 					<td><c:out value="${temp.getFileName()}" /></td>
-					<td><a href="${deleteCUrl}">View</a></td>
+					<td><a href="${viewCUrl}">View</a></td>
+					<td><a href="${deleteCUrl}">Delete</a></td>
 					<%--  <td><c:out value="${item.itemImage}"/></td> --%>
 				</tr>
 			</c:forEach>

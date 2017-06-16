@@ -83,4 +83,11 @@ public class FileUploadeController {
 
 	}
 
+	@RequestMapping(value = "/imageDelete", method = RequestMethod.GET)
+	public void deleteImage(@RequestParam("id") Integer itemId, HttpServletResponse response,
+			HttpServletRequest request) throws ServletException, IOException {
+		fileUploadeDao.deleteImage(itemId);
+
+	}
+
 }
